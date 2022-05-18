@@ -3,7 +3,7 @@ import 'package:gasim_farm/constants.dart';
 import 'package:gasim_farm/components/plus_button.dart';
 
 //This stateless widget creates a card that contains an image of the product,product name and product prize.
-class FruitVegetableCard extends StatelessWidget {
+class FruitVegetableCard extends StatefulWidget {
   //any constant that starts with (K) is initialized in (constant.dart)file.
   final String fruitImage;
   final double prize;
@@ -12,6 +12,12 @@ class FruitVegetableCard extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
   const FruitVegetableCard(
       {required this.fruitName, required this.prize, required this.fruitImage});
+
+  @override
+  State<FruitVegetableCard> createState() => _FruitVegetableCardState();
+}
+
+class _FruitVegetableCardState extends State<FruitVegetableCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,16 +33,16 @@ class FruitVegetableCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(
-                fruitImage,
+                widget.fruitImage,
                 height: 60,
                 width: 80,
               ),
-              Text(fruitName),
+              Text(widget.fruitName),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    '${prize.toString()}\$',
+                    '${widget.prize.toString()}\$',
                     style: KMoneyTextStyle,
                   ),
                   PlusButton(

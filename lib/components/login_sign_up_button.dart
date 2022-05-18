@@ -6,7 +6,8 @@ import 'package:gasim_farm/constants.dart';
 class LoginSignUpButton extends StatelessWidget {
   //any constant that starts with (K) is initialized in (constant.dart)file.
   final String buttonType;
-  LoginSignUpButton({required this.buttonType});
+  final Function onPressed;
+  LoginSignUpButton({required this.buttonType, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -25,11 +26,7 @@ class LoginSignUpButton extends StatelessWidget {
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
         ),
         onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const FruitStore(),
-              ));
+          onPressed;
         },
       ),
     );

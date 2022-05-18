@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302375969452",
+    "project_id": "farm-store-e84e2",
+    "storage_bucket": "farm-store-e84e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302375969452:android:e37659232eb73e05663509",
+        "android_client_info": {
+          "package_name": "com.example.gasim_farm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302375969452-a7qhp7lk3334k49itpi3stvgkuv9a9ku.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGRMVi7WJSPmfjMeZ2VWva-2C1AM2Zwmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302375969452-a7qhp7lk3334k49itpi3stvgkuv9a9ku.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

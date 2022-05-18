@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 const TextStyle KMoneyTextStyle =
     TextStyle(color: Colors.orangeAccent, fontSize: 20);
 enum Type { fruit, vegetables }
-Color KSelectedButtonColor = Colors.orange;
+Color KSelectedTabColor = Colors.orange;
 Color KUnselectedButtonColor = Colors.white;
 Color KUnselectedTextColor = Colors.grey;
 Color KSelectedTextColor = Colors.white;

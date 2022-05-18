@@ -8,11 +8,24 @@ class FormCard extends StatelessWidget {
   final String hintText;
   final Icon prefixIcon;
   final bool obscureText;
+  final TextEditingController? controller;
+  final RegExp? regExp;
+  final String? regExpMessage;
+  final TextInputType? keyboardType;
+  final String validationMessage;
+  final Function?
+      passwordConfirm; //will be used in the sign up form when confirming password
   FormCard(
       {required this.labelText,
       required this.hintText,
       required this.prefixIcon,
-      required this.obscureText});
+      required this.obscureText,
+      this.regExp,
+      this.regExpMessage,
+      this.controller,
+      this.keyboardType,
+      required this.validationMessage,
+      this.passwordConfirm});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +37,23 @@ class FormCard extends StatelessWidget {
         shadowColor: Colors.grey,
         elevation: 10,
         child: TextFormField(
+            controller: controller,
+            onSaved: (value) {
+              controller?.text = value!; // GETTING the value of edit text
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return validationMessage;
+              } else if (regExp!.hasMatch(value)) {
+                return (regExpMessage);
+              } else {
+                passwordConfirm;
+                return null;
+              }
+            },
             cursorColor: Colors.black54,
             obscureText: obscureText,
-            keyboardType: TextInputType.emailAddress,
+            keyboardType: keyboardType,
             decoration: KDropdownButtonDecoration.copyWith(
               prefixIcon: prefixIcon,
               labelText: labelText,

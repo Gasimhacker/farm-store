@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gasim_farm/constants.dart';
 import 'package:gasim_farm/pages/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
