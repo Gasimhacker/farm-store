@@ -62,8 +62,7 @@ class _LoginState extends State<Login> {
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
                   regExp: RegExp(r'^.{6,}$'),
-                  regExpMessage:
-                      'Minimum eight characters, at least one letter and one number:',
+                  regExpMessage: 'Enter Valid Password(Min.6 Character)',
                   labelText: 'Password',
                   hintText: 'Enter your password',
                   prefixIcon: Icon(Icons.vpn_key),
@@ -117,6 +116,9 @@ class _LoginState extends State<Login> {
 
   void signIn(String email, String password) async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        showContent = true;
+      });
       try {
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
@@ -124,6 +126,9 @@ class _LoginState extends State<Login> {
                   // Fluttertoast.showToast(msg: "Login Successful"),
                   Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => Store())),
+                  setState(() {
+                    showContent = false;
+                  })
                 });
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
@@ -150,9 +155,12 @@ class _LoginState extends State<Login> {
             errorMessage = "An undefined Error happened.";
         }
         // Fluttertoast.showToast(msg: errorMessage!);
-        print(errorMessage);
         print(error.code);
       }
+    } else {
+      setState(() {
+        showContent = false;
+      });
     }
   }
 }

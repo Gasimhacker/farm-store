@@ -44,12 +44,12 @@ class FormCard extends StatelessWidget {
             validator: (value) {
               if (value!.isEmpty) {
                 return validationMessage;
-              } else if (regExp!.hasMatch(value)) {
+              } else if (regExp != null && !regExp!.hasMatch(value)) {
                 return (regExpMessage);
-              } else {
+              } else if (passwordConfirm != null) {
                 passwordConfirm;
-                return null;
               }
+              return null;
             },
             cursorColor: Colors.black54,
             obscureText: obscureText,

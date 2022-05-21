@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gasim_farm/components/fruit_vegetables_card.dart';
 import 'package:gasim_farm/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gasim_farm/pages/login.dart';
 
 class Store extends StatefulWidget {
   const Store({Key? key}) : super(key: key);
@@ -10,14 +12,22 @@ class Store extends StatefulWidget {
 }
 
 class _StoreState extends State<Store> {
+  signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Login()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
       backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
-        leading: BackButton(
-          color: Colors.black,
+        leading: IconButton(
+          icon: Icon(Icons.logout_rounded),
+          onPressed: () {
+            signOut();
+          },
         ),
         iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
@@ -26,24 +36,15 @@ class _StoreState extends State<Store> {
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            onPressed: () {},
-          )
-        ],
       ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            DefaultTabController(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: 20,
+          ),
+          Expanded(
+            child: DefaultTabController(
               length: 2,
               initialIndex: 0,
               child: Column(
@@ -74,8 +75,7 @@ class _StoreState extends State<Store> {
                       ),
                     ),
                   ),
-                  Container(
-                    height: 440,
+                  Expanded(
                     child: TabBarView(
                       children: [
                         Expanded(
@@ -294,8 +294,8 @@ class _StoreState extends State<Store> {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

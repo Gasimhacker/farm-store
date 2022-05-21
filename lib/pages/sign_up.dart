@@ -25,6 +25,7 @@ class _MyFormState extends State<MyForm> {
   final email = new TextEditingController();
   final password = new TextEditingController();
   final confirmPassword = new TextEditingController();
+  final birthdate = new TextEditingController();
   final _formKey = GlobalKey<FormState>();
   String genderSelectedValue = 'Gender';
   var genders = ['male', 'female', 'Gender'];
@@ -84,6 +85,7 @@ class _MyFormState extends State<MyForm> {
                     labelText: 'Email Address',
                   ),
                   FormCard(
+                    controller: birthdate,
                     validationMessage: 'please enter your birthdate',
                     keyboardType: TextInputType.datetime,
                     hintText: 'Enter your date of birth',
@@ -152,7 +154,7 @@ class _MyFormState extends State<MyForm> {
                       },
                       buttonType: 'Sign up'),
                   Visibility(
-                      visible: false,
+                      visible: showContent,
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         child: const CircularProgressIndicator(
@@ -173,6 +175,9 @@ class _MyFormState extends State<MyForm> {
 
   void signUp(String email, String password) async {
     if (_formKey.currentState!.validate()) {
+      setState(() {
+        showContent = true;
+      });
       try {
         await _auth
             .createUserWithEmailAndPassword(email: email, password: password)
@@ -206,6 +211,10 @@ class _MyFormState extends State<MyForm> {
         // Fluttertoast.showToast(msg: errorMessage!);
         print(error.code);
       }
+    } else {
+      setState(() {
+        showContent = false;
+      });
     }
   }
 
@@ -223,7 +232,9 @@ class _MyFormState extends State<MyForm> {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.firstName = firstName.text;
-    userModel.secondName = lastName.text;
+    userModel.lastName = lastName.text;
+    userModel.gender = genderSelectedValue;
+    userModel.birthdate = birthdate.text;
 
     await firebaseFirestore
         .collection("users")
@@ -233,5 +244,8 @@ class _MyFormState extends State<MyForm> {
 
     Navigator.pushAndRemoveUntil((context),
         MaterialPageRoute(builder: (context) => Store()), (route) => false);
+    setState(() {
+      showContent = false;
+    });
   }
 }

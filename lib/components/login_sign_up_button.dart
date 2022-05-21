@@ -6,7 +6,7 @@ import 'package:gasim_farm/constants.dart';
 class LoginSignUpButton extends StatelessWidget {
   //any constant that starts with (K) is initialized in (constant.dart)file.
   final String buttonType;
-  final Function onPressed;
+  final VoidCallback onPressed;
   LoginSignUpButton({required this.buttonType, required this.onPressed});
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,7 @@ class LoginSignUpButton extends StatelessWidget {
           style: TextStyle(
               color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        onPressed: () {
-          onPressed;
-        },
+        onPressed: onPressed,
       ),
     );
   }
