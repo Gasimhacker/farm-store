@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:gasim_farm/constants.dart';
 import 'package:gasim_farm/components/plus_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //This stateless widget creates a card that contains an image of the product,product name and product prize.
 class FruitVegetableCard extends StatefulWidget {
   //any constant that starts with (K) is initialized in (constant.dart)file.
-  final String fruitImage;
-  final double prize;
-  final String fruitName;
-
+  final String image;
+  double prize;
+  final String name;
   // ignore: use_key_in_widget_constructors
-  const FruitVegetableCard(
-      {required this.fruitName, required this.prize, required this.fruitImage});
+  FruitVegetableCard({
+    required this.name,
+    required this.prize,
+    required this.image,
+  });
 
   @override
   State<FruitVegetableCard> createState() => _FruitVegetableCardState();
 }
 
 class _FruitVegetableCardState extends State<FruitVegetableCard> {
+  double quantity = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -33,11 +37,11 @@ class _FruitVegetableCardState extends State<FruitVegetableCard> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(
-                widget.fruitImage,
+                widget.image,
                 height: 60,
                 width: 80,
               ),
-              Text(widget.fruitName),
+              Text(widget.name),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -45,9 +49,35 @@ class _FruitVegetableCardState extends State<FruitVegetableCard> {
                     '${widget.prize.toString()}\$',
                     style: KMoneyTextStyle,
                   ),
-                  PlusButton(
+                  Visibility(
+                    child: Text(
+                      '${quantity.toInt()}',
+                      style: KMoneyTextStyle,
+                    ),
+                  ),
+                  PlusMinusButton(
                     //Look into the components directory(plus_button.dart).
-                    onPressed: () {},
+                    icon: FontAwesomeIcons.plus,
+                    onPressed: () {
+                      setState(() {
+                        quantity++;
+                        KTotalPrize += widget.prize;
+                      });
+                    },
+                  ),
+                  PlusMinusButton(
+                    icon: FontAwesomeIcons.minus,
+                    //Look into the components directory(plus_button.dart).
+                    onPressed: () {
+                      setState(() {
+                        if (quantity != 0) {
+                          quantity--;
+                          KTotalPrize != 0
+                              ? KTotalPrize -= widget.prize
+                              : KTotalPrize = KTotalPrize;
+                        }
+                      });
+                    },
                   ),
                 ],
               )

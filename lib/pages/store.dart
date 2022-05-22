@@ -3,6 +3,8 @@ import 'package:gasim_farm/components/fruit_vegetables_card.dart';
 import 'package:gasim_farm/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gasim_farm/pages/login.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:gasim_farm/components/add_to_cart_button.dart';
 
 class Store extends StatefulWidget {
   const Store({Key? key}) : super(key: key);
@@ -12,7 +14,7 @@ class Store extends StatefulWidget {
 }
 
 class _StoreState extends State<Store> {
-  signOut() async {
+  SignOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Login()));
@@ -21,12 +23,13 @@ class _StoreState extends State<Store> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: AddToCartButton(),
       backgroundColor: const Color(0xffffffff),
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.logout_rounded),
           onPressed: () {
-            signOut();
+            SignOut();
           },
         ),
         iconTheme: IconThemeData(color: Colors.black),
@@ -85,98 +88,99 @@ class _StoreState extends State<Store> {
                                 height: 10,
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/mango.jpg',
-                                      prize: 50,
-                                      fruitName: 'FRESH MANGO (1kg)',
+                                      image: 'images/fruits/mango.jpg',
+                                      prize: mangoPrize,
+                                      name: 'FRESH MANGO (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/banana.jpg',
-                                      prize: 10,
-                                      fruitName: 'FRESH BANANA (1kg)',
+                                      image: 'images/fruits/banana.jpg',
+                                      prize: bananaPrize,
+                                      name: 'FRESH BANANA (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/orange.jpg',
-                                      prize: 30,
-                                      fruitName: 'FRESH ORANGE (1kg)',
+                                      image: 'images/fruits/orange.jpg',
+                                      prize: orangePrize,
+                                      name: 'FRESH ORANGE (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/fruits/grape_fruit.jpg',
-                                      prize: 40,
-                                      fruitName: 'FRESH GRAPE FRUIT (1kg)',
+                                      image: 'images/fruits/grape_fruit.jpg',
+                                      prize: grapeFruitPrize,
+                                      name: 'FRESH GRAPE FRUIT (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/melon.jpg',
-                                      prize: 25,
-                                      fruitName: 'FRESH MELON (1kg)',
+                                      image: 'images/fruits/melon.jpg',
+                                      prize: melonPrize,
+                                      name: 'FRESH MELON (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/fruits/water_melon.jpg',
-                                      prize: 35,
-                                      fruitName: 'FRESH WATER MELON (1kg)',
+                                      image: 'images/fruits/water_melon.jpg',
+                                      prize: waterMelonPrize,
+                                      name: 'FRESH WATER MELON (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/guava.jpg',
-                                      prize: 20,
-                                      fruitName: 'FRESH GUAVA (1kg)',
+                                      image: 'images/fruits/guava.jpg',
+                                      prize: guavaPrize,
+                                      name: 'FRESH GUAVA (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/lemon.jpg',
-                                      prize: 15,
-                                      fruitName: 'FRESH LEMON (1kg)',
+                                      image: 'images/fruits/lemon.jpg',
+                                      prize: lemonPrize,
+                                      name: 'FRESH LEMON (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/fruits/grape.jpg',
-                                      prize: 45,
-                                      fruitName: 'FRESH GRAPE (1kg)',
+                                      image: 'images/fruits/grape.jpg',
+                                      prize: grapePrize,
+                                      name: 'FRESH GRAPE (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
+                                      image:
                                           'images/fruits/Persian Buckthorn.jpg',
-                                      prize: 35,
-                                      fruitName: 'FRESH BUCKTHORN (1kg)',
+                                      prize: buckthornPrize,
+                                      name: 'FRESH BUCKTHORN (1kg)',
                                     ),
                                   )
                                 ],
                               ),
+                              SizedBox(
+                                height: 50,
+                              )
                             ],
                           ),
                         ),
@@ -187,104 +191,99 @@ class _StoreState extends State<Store> {
                                 height: 10,
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/tomato.jpg',
+                                      image: 'images/vegetables/tomato.jpg',
                                       prize: 50,
-                                      fruitName: 'FRESH TOMATO (1kg)',
+                                      name: 'FRESH TOMATO (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/carrot.jpg',
+                                      image: 'images/vegetables/carrot.jpg',
                                       prize: 10,
-                                      fruitName: 'FRESH CARROT (1kg)',
+                                      name: 'FRESH CARROT (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/pumpkin.jpg',
-                                      prize: 30,
-                                      fruitName: 'FRESH PUMPKIN (1kg)',
+                                      image: 'images/vegetables/pumpkin.jpg',
+                                      prize: pumpkinPrize,
+                                      name: 'FRESH PUMPKIN (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/vegetables/onion.jpg',
-                                      prize: 40,
-                                      fruitName: 'FRESH ONION (1kg)',
+                                      image: 'images/vegetables/onion.jpg',
+                                      prize: onionPrize,
+                                      name: 'FRESH ONION (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage: 'images/vegetables/okra.jpg',
-                                      prize: 25,
-                                      fruitName: 'FRESH OKRA (1kg)',
+                                      image: 'images/vegetables/okra.jpg',
+                                      prize: okraPrize,
+                                      name: 'FRESH OKRA (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/egg_plant.jpg',
-                                      prize: 35,
-                                      fruitName: 'FRESH EGG PLANT (1kg)',
+                                      image: 'images/vegetables/egg_plant.jpg',
+                                      prize: eggPlantPrize,
+                                      name: 'FRESH EGG PLANT (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/cucumber.jpg',
-                                      prize: 20,
-                                      fruitName: 'FRESH CUCUMBER (1kg)',
+                                      image: 'images/vegetables/cucumber.jpg',
+                                      prize: cucumberPrize,
+                                      name: 'FRESH CUCUMBER (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
+                                      image:
                                           'images/vegetables/armenian-cucumber.jpg',
-                                      prize: 15,
-                                      fruitName:
-                                          'FRESH ARMENIAN CUCUMBER (1kg)',
+                                      prize: armenianCucumberPrize,
+                                      name: 'FRESH ARMENIAN CUCUMBER (1kg)',
                                     ),
                                   )
                                 ],
                               ),
                               Row(
-                                children: const [
+                                children: [
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/chilli.jpg',
-                                      prize: 45,
-                                      fruitName: 'FRESH CHILLI (1kg)',
+                                      image: 'images/vegetables/chilli.jpg',
+                                      prize: chilliPrize,
+                                      name: 'FRESH CHILLI (1kg)',
                                     ),
                                   ),
                                   Expanded(
                                     child: FruitVegetableCard(
-                                      fruitImage:
-                                          'images/vegetables/pepper.jpg',
-                                      prize: 35,
-                                      fruitName: 'FRESH PEPPER (1kg)',
+                                      image: 'images/vegetables/pepper.jpg',
+                                      prize: pepperPrize,
+                                      name: 'FRESH PEPPER (1kg)',
                                     ),
                                   )
                                 ],
                               ),
+                              SizedBox(
+                                height: 50,
+                              )
                             ],
                           ),
                         ),

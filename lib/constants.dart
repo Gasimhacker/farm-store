@@ -21,3 +21,28 @@ const InputDecoration KDropdownButtonDecoration = InputDecoration(
 
 OutlinedBorder KElevatedButtonBorder =
     RoundedRectangleBorder(borderRadius: BorderRadius.circular(20));
+
+double KTotalPrize = 0;
+bool KAddToCartVisibility = false;
+
+double mangoPrize = 50;
+double bananaPrize = 10;
+double orangePrize = 30;
+double grapeFruitPrize = 40;
+double melonPrize = 25;
+double waterMelonPrize = 35;
+double guavaPrize = 20;
+double lemonPrize = 15;
+double grapePrize = 45;
+double buckthornPrize = 35;
+
+double tomatoPrize = 50;
+double carrotPrize = 10;
+double pumpkinPrize = 30;
+double onionPrize = 40;
+double okraPrize = 25;
+double eggPlantPrize = 35;
+double cucumberPrize = 20;
+double armenianCucumberPrize = 15;
+double chilliPrize = 45;
+double pepperPrize = 35;
