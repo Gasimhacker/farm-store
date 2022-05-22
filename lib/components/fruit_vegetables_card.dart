@@ -56,6 +56,7 @@ class _FruitVegetableCardState extends State<FruitVegetableCard> {
                     ),
                   ),
                   PlusMinusButton(
+                    color: Colors.green,
                     //Look into the components directory(plus_button.dart).
                     icon: FontAwesomeIcons.plus,
                     onPressed: () {
@@ -66,6 +67,7 @@ class _FruitVegetableCardState extends State<FruitVegetableCard> {
                     },
                   ),
                   PlusMinusButton(
+                    color: Colors.red,
                     icon: FontAwesomeIcons.minus,
                     //Look into the components directory(plus_button.dart).
                     onPressed: () {

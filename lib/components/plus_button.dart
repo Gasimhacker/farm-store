@@ -5,8 +5,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class PlusMinusButton extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData icon;
+  final Color color;
   // ignore: use_key_in_widget_constructors
-  const PlusMinusButton({required this.onPressed, required this.icon});
+  const PlusMinusButton(
+      {required this.onPressed, required this.icon, required this.color});
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
@@ -16,7 +18,7 @@ class PlusMinusButton extends StatelessWidget {
         height: 30.0,
       ),
       shape: const CircleBorder(),
-      fillColor: Colors.green,
+      fillColor: color,
       onPressed: onPressed,
       child: Icon(
         icon,

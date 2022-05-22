@@ -13,7 +13,7 @@ class FormCard extends StatelessWidget {
   final String? regExpMessage;
   final TextInputType? keyboardType;
   final String validationMessage;
-  final Function?
+  final dynamic
       passwordConfirm; //will be used in the sign up form when confirming password
   FormCard(
       {required this.labelText,
@@ -46,8 +46,9 @@ class FormCard extends StatelessWidget {
                 return validationMessage;
               } else if (regExp != null && !regExp!.hasMatch(value)) {
                 return (regExpMessage);
-              } else if (passwordConfirm != null) {
-                passwordConfirm;
+              }
+              if (passwordConfirm != null) {
+                return passwordConfirm;
               }
               return null;
             },

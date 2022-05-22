@@ -132,11 +132,8 @@ class _MyFormState extends State<MyForm> {
                     ),
                   ),
                   FormCard(
-                    passwordConfirm: () {
-                      if (password.text != confirmPassword.text) {
-                        return "Password does not match";
-                      }
-                    },
+                    controller: confirmPassword,
+                    passwordConfirm: confirmCheck(),
                     validationMessage: 'please repeat your password',
                     regExp: RegExp(r'^.{6,}$'),
                     regExpMessage: 'Enter Valid Password(Min.6 Character)',
@@ -247,5 +244,12 @@ class _MyFormState extends State<MyForm> {
     setState(() {
       showContent = false;
     });
+  }
+
+  confirmCheck() {
+    if (password.text != confirmPassword.text) {
+      return "Password does not match";
+    }
+    return null;
   }
 }
